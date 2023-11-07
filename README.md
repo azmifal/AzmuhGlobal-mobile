@@ -3,7 +3,7 @@
 ## Tugas 7
 
 <details>
-<summary><b>Detail Tugas 1</b></summary>
+<summary><b>Detail Tugas 7</b></summary>
 
 ### Apa perbedaan utama antara _stateless_ dan _stateful widget_ dalam konteks pengembangan aplikasi Flutter?
 
