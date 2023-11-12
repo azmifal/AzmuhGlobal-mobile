@@ -545,54 +545,54 @@ Dengan mengikuti prinsip-prinsip _Clean Architecture_ ini, aplikasi Flutter dapa
                 }
             }
             ```
-    3. *Memunculkan Snackbar*:
-        - Dalam class `ShopCard`, tambahkan potongan kode berikut:
-            ```
-            @override
-            Widget build(BuildContext context){
-                return Material(
+3. *Memunculkan Snackbar*:
+    - Dalam class `ShopCard`, tambahkan potongan kode berikut:
+        ```
+        @override
+        Widget build(BuildContext context){
+            return Material(
+                ....
+                child: InkWell(
+                    onTap: () {
+                    // Memunculkan SnackBar ketika diklik
+                    ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(SnackBar(
+                            content: Text("Kamu telah menekan tombol ${item.name}!")));
+                    },
                     ....
-                    child: InkWell(
-                        onTap: () {
-                        // Memunculkan SnackBar ketika diklik
-                        ScaffoldMessenger.of(context)
-                            ..hideCurrentSnackBar()
-                            ..showSnackBar(SnackBar(
-                                content: Text("Kamu telah menekan tombol ${item.name}!")));
-                        },
-                        ....
-                    )
                 )
-            }
-            ```
-    4. *Bonus*:
-        - Menambahkan field dan constructor baru pada class `ShopItem` seperti berikut:
-            ```
-            class ShopItem {
-                final String name;
-                final IconData icon;
-                final Color color;
+            )
+        }
+        ```
+4. *Bonus*:
+    - Menambahkan field dan constructor baru pada class `ShopItem` seperti berikut:
+        ```
+        class ShopItem {
+            final String name;
+            final IconData icon;
+            final Color color;
 
-                ShopItem(this.name, this.icon, this.color);
+            ShopItem(this.name, this.icon, this.color);
+        }
+        ```
+    - Menambahkan parameter baru dalam pemanggilan class `ShopItem` pada List Items seperti berikut:
+        ```
+        final List<ShopItem> items = [
+            ShopItem("Lihat Item", Icons.checklist,const Color(0xFF94B9AF)),
+            ShopItem("Tambah Item", Icons.add_shopping_cart, const Color(0xFF90A583)),
+            ShopItem("Logout", Icons.logout, const Color(0xFF3A606E)),
+        ];
+        ```
+    - Mengubah cara pemanggilan warna dari class `ShopCard` agar sesuai dengan warna dari masing-masing Item seperti berikut:
+        ```
+        class ShopCard extends StatelessWidget {
+            ... 
+            @override
+            Widget build(BuildContext context) {
+                ...
+                color: item.color,
+                ...
             }
-            ```
-        - Menambahkan parameter baru dalam pemanggilan class `ShopItem` pada List Items seperti berikut:
-            ```
-            final List<ShopItem> items = [
-                ShopItem("Lihat Item", Icons.checklist,const Color(0xFF94B9AF)),
-                ShopItem("Tambah Item", Icons.add_shopping_cart, const Color(0xFF90A583)),
-                ShopItem("Logout", Icons.logout, const Color(0xFF3A606E)),
-            ];
-            ```
-        - Mengubah cara pemanggilan warna dari class `ShopCard` agar sesuai dengan warna dari masing-masing Item seperti berikut:
-            ```
-            class ShopCard extends StatelessWidget {
-                ... 
-                @override
-                Widget build(BuildContext context) {
-                    ...
-                    color: item.color,
-                    ...
-                }
-            }
-            ```
+        }
+        ```
