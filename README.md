@@ -2,9 +2,6 @@
 
 ## Tugas 8
 
-<details>
-<summary><b>Detail Tugas 8</b></summary>
-
 ### Jelaskan perbedaan antara `Navigator.push()` dan `Navigator.pushReplacement()`, disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
 
 - `Navigator.push()`: Metode ini digunakan untuk menavigasi ke halaman baru dan menambahkannya ke tumpukan halaman (stack). Halaman sebelumnya tetap ada di tumpukan dan dapat kembali dengan menggunakan tombol kembali atau metode `Navigator.pop()`. Contoh penggunaannya:
@@ -394,11 +391,9 @@ Dengan mengikuti prinsip-prinsip _Clean Architecture_ ini, aplikasi Flutter dapa
         ...
 
         ```
+</summary>
 
 ## Tugas 7
-
-<details>
-<summary><b>Detail Tugas 7</b></summary>
 
 ### Apa perbedaan utama antara _stateless_ dan _stateful widget_ dalam konteks pengembangan aplikasi Flutter?
 
