@@ -1,5 +1,182 @@
 # Azmmuh Global
 
+## Tugas 9
+
+### Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+
+Ya, kita bisa melakukan pengambilan data JSON tanpa membuat model terlebih dahulu. Namun, hal tersebut tidak disarankan karena membuat model terlebih dahulu akan memudahkan kita dalam mengakses dan memanipulasi data JSON tersebut. Dengan membuat model terlebih dahulu, kita dapat menggunakan ORM (Object-Relational Mapping) yang disediakan oleh Django untuk mengakses data JSON dengan lebih mudah dan efisien. Selain itu, dengan membuat model, kita juga dapat memvalidasi data yang diterima dari JSON dan memastikan bahwa data tersebut sesuai dengan struktur yang diharapkan.
+
+Jika kita tidak membuat model terlebih dahulu, kita harus melakukan parsing dan validasi data JSON secara manual, yang dapat memakan waktu dan mempersulit pengembangan aplikasi. Oleh karena itu, disarankan untuk membuat model terlebih dahulu sebelum melakukan pengambilan data JSON.
+
+### Jelaskan fungsi dari CookieRequest dan jelaskan mengapa _instance_ CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+
+Secara umum, dalam konteks web development, CookieRequest mungkin merujuk pada permintaan yang berisi informasi cookie yang dikirim ke server. Informasi cookie ini dapat digunakan oleh server untuk mengidentifikasi pengguna dan menyimpan preferensi atau informasi lainnya yang berkaitan dengan sesi pengguna.
+
+_Instance_ CookieRequest perlu dibagikan ke semua komponen dalam aplikasi Flutter jika kita ingin menyimpan dan mengelola informasi cookie secara konsisten di seluruh aplikasi. Dengan membagikan instance CookieRequest, kita dapat memastikan bahwa setiap komponen dalam aplikasi menggunakan informasi cookie yang sama dan terbaru. Hal ini dapat membantu menghindari masalah seperti informasi cookie yang tidak konsisten atau kadaluwarsa, yang dapat memengaruhi pengalaman pengguna dan kinerja aplikasi secara keseluruhan.
+
+### Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.
+
+Dalam pengambilan data dari JSON pada aplikasi Flutter, langkah-langkah yang perlu dilakukan adalah sebagai berikut:
+- **Pengambilan Data**: Pertama, aplikasi perlu melakukan permintaan ke sumber data, seperti server web atau file lokal. Hal ini dapat dilakukan dengan menggunakan dependensi http untuk melakukan permintaan HTTP ke server yang menyediakan data JSON.
+- **Pembuatan Model**: Setelah data JSON diterima, aplikasi perlu membuat model yang sesuai dengan struktur data tersebut. Model ini akan digunakan untuk menyimpan data yang telah diambil dari JSON.
+- **Konversi Data**: Untuk mengonversi data JSON menjadi objek model, aplikasi perlu menambahkan method seperti `toJson` dan `fromJson` di dalam model. Method `fromJson` digunakan untuk mengonversi data JSON menjadi objek model, sedangkan method `toJson` digunakan untuk mengonversi objek model menjadi data JSON.
+- **Pembuatan Widget**: Setelah data telah diambil dan diolah, aplikasi dapat membangun widget yang menggunakan data tersebut untuk menampilkan informasi di layar. Ini dapat melibatkan penggunaan widget seperti Text, ListView, GridView, dan lainnya.
+
+Dengan langkah-langkah di atas, aplikasi Flutter dapat mengambil data dari JSON dan menampilkannya dalam bentuk yang sesuai dengan kebutuhan aplikasi.
+
+### Sebutkan seluruh _widget_ yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
+
+- **Provider**: Bertanggung jawab untuk mengelola dan menyediakan data, seperti dalam kasus penggunaan CookieRequest, ke seluruh aplikasi.
+- **MaterialApp**: Widget utama yang mengontrol tema dan navigasi dalam aplikasi berbasis material design.
+- **Scaffold**: Menyediakan kerangka dasar untuk tata letak halaman, termasuk elemen-elemen seperti AppBar, Drawer, dan Body.
+- **AppBar**: Komponen yang menampilkan bilah di bagian atas layar dengan judul halaman biasanya disertakan.
+- **Container**: Widget untuk mengatur tata letak dan dekorasi elemen anak, sering digunakan untuk menambahkan padding.
+- **Column**: Mengatur elemen anak secara vertikal, memfasilitasi tata letak vertikal.
+- **TextField**: Memungkinkan pengguna memasukkan teks, seperti formulir atau kolom pencarian.
+- **SizedBox**: Menyediakan ruang atau jarak tetap antara elemen-elemen widget.
+- **ElevatedButton**: Tombol yang memiliki efek elevasi, digunakan untuk memicu aksi atau perintah.
+- **FutureBuilder**: Membangun widget berdasarkan hasil dari operasi asinkron Future.
+- **ListView.builder**: Membuat daftar item yang dapat di-scroll secara efisien.
+- **Text**: Menampilkan teks atau label di antarmuka pengguna.
+- **Padding**: Menambahkan ruang atau padding di sekitar elemen-elemen widget anak.
+- **AlertDialog**: Menampilkan dialog kepada pengguna, sering digunakan untuk konfirmasi atau memberikan informasi penting.
+- **TextButton**: Tombol dengan gaya teks, biasanya digunakan dalam dialog atau situasi di mana tampilan minimalis diinginkan.
+- **Form**: Bertanggung jawab atas mengelola state formulir dan melakukan validasi input pengguna.
+- **GlobalKey**: Kunci yang digunakan untuk mengidentifikasi state dari formulir atau widget lainnya.
+- **TextEditingController**: Mengontrol teks yang ditampilkan dan diubah dalam TextField.
+- **SnackBar**: Menampilkan pesan singkat di bagian bawah layar, berguna untuk memberi umpan balik singkat kepada pengguna.
+- **Navigator**: Mengelola tumpukan rute dan memfasilitasi navigasi antar halaman dalam aplikasi.
+- **MaterialPageRoute**: Mengatur transisi antar halaman dengan gaya desain material.
+- **LeftDrawer**: Widget kustom yang berperan sebagai menu navigasi samping, memberikan akses cepat ke fungsi atau bagian penting dalam aplikasi.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas secara _step-by-step_! (bukan hanya sekadar mengikuti tutorial).
+
+1. *Membuat halaman login pada proyek tugas Flutter.* dan *Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter*:
+    - Membuat Django App baru bernama `authentication`
+    - Menambahkan beberapa dependensi baru pada `setting.py` di direktori tugas yang Django.
+    - Membuat fungsi `login` pada file `views,py` yang terdapat pada folder `authentication` yang nantinya akan digunakan pada aplikasi Flutter dan juga menambahkan pathnya pada `urls.py`.
+    - Menginstall package `provider` dan `pbp_django_auth`.
+    - Mengubah `main.dart` agar dapat menyediakan `CookieRequest` ke semua komponen di aplikasi dengan menggunakan `Provider`.
+    - Membuat file `login.dart` yang akan digunakan sebagai halaman yang akan ditampilkan pada halaman login.
+    - Melakukan routing url untuk menyambungkan aplikasi Flutter dengan localhost Django seperti berikut:
+        ```
+        final response = await request.login("http://127.0.0.1:8000/auth/login/", {
+                                'username': username,
+                                'password': password,
+                                });
+        ```
+
+2. *Membuat model kustom sesuai dengan proyek aplikasi Django*:
+    - Mengambil data pada endpoint `JSON` yang akan digunakan untuk membuat model dengan bantuan website _Quicktype_
+    - Mengubah _setup name_ menjadi Item kemudian salin kode dari website dan masukkan ke dalam file baru bernama `item.dart`
+
+3. *Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah kamu deploy*:
+    - Memperbolehkan akses internet pada aplikasi Flutter dengan menambahkan potongan kode berikut pada file `android/app/src/main/AndroidManifest.xml`:
+        ```
+        ...
+            <application>
+            ...
+            </application>
+            <!-- Required to fetch data from the Internet. -->
+            <uses-permission android:name="android.permission.INTERNET" />
+        ...
+        ```
+    - Membuat file `list_item.dart` untuk menampilkan data item yang telah dibuat oleh semua user.
+    - Menambahkan halaman *Daftar Item* ke `left_drawer.dart` dengan membuat ListTile baru dan akan routing ke `ItemPage`. Begitu juga pada file `shop_card.dart`
+
+4. *Membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item*:
+    - Membuat file `detail_item.dart` dengan kode seperti berikut:
+        ```
+        import 'package:flutter/material.dart';
+        import 'package:azmuh_global/models/item.dart';
+        import 'package:azmuh_global/widgets/left_drawer.dart';
+
+        class ItemDetailPage extends StatelessWidget {
+            final Item item;
+
+            const ItemDetailPage({Key? key, required this.item}) : super(key: key);
+
+            @override
+            Widget build(BuildContext context) {
+                return Scaffold(
+                    appBar: AppBar(
+                        title: const Text("Item's Detail"),
+                        backgroundColor: const Color(0xFF69585F),
+                        foregroundColor: Colors.white,
+                    ),
+                    drawer: const LeftDrawer(),
+                    body: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                                Text(
+                                item.fields.name,
+                                style: const TextStyle(
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.bold,
+                                ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text("Amount: ${item.fields.amount}"),
+                                const SizedBox(height: 10),
+                                Text("Description: ${item.fields.description}"),
+                                const SizedBox(height: 10),
+                                ElevatedButton(
+                                    onPressed: () {
+                                        Navigator.pop(context); // Navigate back to the item list page
+                                    },
+                                    child: const Text('Back'),
+                                ),
+                            ],
+                        ),
+                    ),
+                );
+            }
+        }
+        ```
+        Pada kode tersebut juga sudah terdapat _button_ *Back* untuk kembali ke halaman daftar item.
+    - Mengubah sedikit kode pada `list_item.dart`agar dapat mengakses detail per-item seperti berikut:
+        ```
+        ...
+        return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (_, index) => InkWell(
+                onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ItemDetailPage(
+                                item: snapshot.data![index])));
+                },
+                child: Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                            Text(
+                                "${snapshot.data![index].fields.name}",
+                                style: const TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                ),
+                            ),
+                            const SizedBox(height: 10),
+                            Text("${snapshot.data![index].fields.amount}"),
+                            const SizedBox(height: 10),
+                            Text(
+                                "${snapshot.data![index].fields.description}")
+                        ],
+                    ),
+                )
+            )
+        );
+        ...
+        ```
+
 ## Tugas 8
 
 ### Jelaskan perbedaan antara `Navigator.push()` dan `Navigator.pushReplacement()`, disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
